@@ -8,30 +8,46 @@
     <link rel="stylesheet" href="style.css">
       <link rel="shortcut icon" href="imge.png" type="image/x-icon">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
     <div class="userMangement">
         <div class="header">
-            <h1>UMS.pk</h1>
+            <h1>UMS.pk <span class="menu" id="menu"onclick="show()" >Menu show</span></h1>
             <h3 id="userName">Hello, Guest</h3>
             <button onclick="logout()" class="logout" id="logout"><i class="bi  bi-box-arrow-in-left"></i>logout</button>
         </div>
         <div class="content">
-        <div class="left">
+        <div class="left" id="left">
+            <span class="leftSpan" onclick="hideMenue()"> <i class="bi bi-x-lg"></i></span>
            <button value="allUserListBtn" name="allUserListBtn" id="allUserListBtn" onclick="allUserListFun()"> <i class="bi bi-people-fill"></i> Genrate User List</button>
         <button value="addUserBtn" name="addUserBtn" id="addUserBtn" onclick="addUserFun()"> <i class="bi bi-person-fill-add"></i>Add User</button>
-        <button value="updateUserBtn" name="updateUser" id="updateUsers" onclick="updateCurrentUser()"><i class="bi bi-person-fill-gear"></i>Update User</button>
-        <button value="deleteUserBtn" name="deleteUserBtn" id="deleteUserBtn" onclick="deleteUserFun()"><i class="bi bi-person-x-fill"></i>Delete User</button>
+        
         <hr color="#ff9f43">
         <button value="userLoginBtn" name="userLoginBtn" id="userLoginBtn" onclick="userLoginFun()"><i class="bi bi-box-arrow-in-right"></i>User Login</button>
-
-        </div>
+        
+         
+    </div>
         <div class="right" id="mainContent">
          <div class="usersList" id="usersList">
              <h2>Current User List</h2>
              <p>We have following users avilable in our list:</p>
-             <div class="userList" id="userList">
-                
+             <div class="userList table-responsive" id="userList">
+               <table class="table table-striped table-hover" >
+  <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Action</th>
+                              
+                            </tr>
+                        </thead>
+                      
+                        <tbody id="table">
+
+                       </tbody>
+               </table>
+                 
              </div>
          </div>
 
@@ -92,7 +108,7 @@
 </div>
        
     </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="main.js"></script>
 </body>
 </html>

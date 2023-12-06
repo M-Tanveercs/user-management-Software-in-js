@@ -23,6 +23,7 @@ deleteExtUser.style.display = "none";
 userLogin.style.display = "none"; 
 logoutVar.style.display="none";
 updateUserData.style.display="none"
+
 let loggedInUserEmail;
 submit.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -134,16 +135,23 @@ let acceptData=()=>{
 
 
 
-let userList = document.getElementById("userList");
+let table = document.getElementById("table");
 const displayEmail=()=>{
-userList.innerHTML = "";
+table.innerHTML = "";
 userData.map((x,y)=>{
-    return (userList.innerHTML += `
-<ul id="${y+1}">
-    <i>${y+1}.
-    ${x.emails}
-    </i>
-</ul>
+    return (table.innerHTML += `
+
+
+                            <tr class="" id="${y + 1}  scope="row">
+                                
+                                <td>${x.name} </td>
+                                <td>${x.emails}</td>
+                                <td> <button class="formBtn "value="updateUserBtn" name="updateUser" id="updateUsers" onclick="updateCurrentUser()"><i class="bi bi-person-fill-gear"></i>Update</button>
+        <button class="formBtn formbtn2" value="deleteUserBtn" name="deleteUserBtn" id="deleteUserBtn" onclick="deleteUserFun()"><i class="bi bi-person-x-fill"></i>Discard</button></td>
+                            </tr>
+                            
+                 
+               
     `);
 })
 }
@@ -271,6 +279,17 @@ const updateUser = () => {
         alert("User not found");
     }
 }
+ 
+let show=()=>{
+  document.getElementById("left").style.width="40%"
+  document.getElementById("left").style.padding="20px 20px"
+}
+let hideMenue=()=>{
+  document.getElementById("left").style.width = "0px";
+  document.getElementById("left").style.padding = "20px 0px";
+}
+
+
 
 
 

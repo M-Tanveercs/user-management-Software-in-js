@@ -15,11 +15,11 @@ body{
     /* justify-content: space-between;   */
     flex-direction: column;
     background-color: #FFC312;
-    margin: 60px 160px;
+    /* margin: 60px 160px; */
 
-    height:80vh ;
-    border: 5px solid black;
-    border-radius: 20px;
+    height:100vh ;
+    /* border: 5px solid black; */
+    /* border-radius: 20px; */
     position: relative;
 }
 .header{
@@ -35,12 +35,18 @@ body{
     justify-content: space-between;
     width: 100%;
 }
-.left{
+.left{ position: relative;
     display: flex;
     flex-direction: column;
-    width: 40%;
-    padding: 20px 20px;
-  height:70vh ;
+    width: 0px;
+    padding: 20px 0px;
+  height:100vh ;
+  align-items: center;
+  background-color:#FFC312;
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+overflow-x: hidden;
+transition: 0.5s;
+  /* justify-content: center; */
 }
 .left button{
     width: 80%;
@@ -54,7 +60,36 @@ body{
         border: none;
         border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    
+    transition: 0.3s;
+}.menu{
+    color: #FFC312;
+    font-size: 22px;
+    margin-left: 50px;
+    border-bottom: #FFC312 1px solid;
+}
+.menu:hover{
+    color: white;
+    cursor: pointer;
+}
+.leftSpan{
+    color: #222f3e; 
+width:fit-content;
+/* background: #000; */
+align-self: flex-end;
+
+}
+.leftSpan i{
+    font-weight:bolder;
+    font-size: 20px;
+}
+.leftSpan i:hover{
+    color: red
+}
+#userLoginBtn{
+  position: absolute;
+  bottom:100px;
+
+   
 }
 
 hr{
@@ -67,10 +102,12 @@ margin-top: 10px;
 }
 .right{
  display: flex;
- width: 60%;
+ width: 100%;
  /* justify-content: center; */
- padding: 20px 0px;
+ padding: 20px 70px;
  padding-right: 100px;
+
+
 }
 .usersList, .addNewUser,.deleteExtUser,.userLogin{
     width: 100%;
@@ -81,17 +118,29 @@ font-size: 2.5rem;
 font-weight: 300;
 
 }
+.formBtn{
+    padding: 2px;
+    border: none;
+    outline: none;
+    display: inline-block; 
+    margin-left: 5px;
+   background-color: transparent;
+   color: blueviolet;
+}
+.formbtn2{
+    color: red;
+}
+
 .userList{
     width: 100%;
-    background-color: #ffff;
-    padding: 20px 30px;
+    /* background-color: #ffff; */
+    padding: 20px 5px;
     margin-top: 20px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    /* box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
+    text-align:left ;
 }
-.userList ul li{
-    list-style: decimal;
-    font-weight: 400;
-}
+
+
 .bi{
     margin-right: 10px;
     font-weight: 500;
@@ -100,7 +149,8 @@ font-weight: 300;
 .addNewUser form input,
 .deleteExtUser form input,
 .userLogin form input{
-    width: 100%;
+    
+    width: 90%;
     height: 35px;
     border: none;
     outline-offset: 3px ;
