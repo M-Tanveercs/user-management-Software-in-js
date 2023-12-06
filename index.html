@@ -13,7 +13,7 @@
 <body>
     <div class="userMangement">
         <div class="header">
-            <h1>UMS.pk <span class="menu" id="menu"onclick="show()" >Menu show</span></h1>
+            <h1>UMS.pk <span class="menu" id="menu"onclick="show()" ><i class="bi bi-list"></i>Menu </span></h1>
             <h3 id="userName">Hello, Guest</h3>
             <button onclick="logout()" class="logout" id="logout"><i class="bi  bi-box-arrow-in-left"></i>logout</button>
         </div>
@@ -70,7 +70,8 @@
             <h2>Update Current User:</h2>
             <form action=""  id="updateUserForm" >
                 <label for="updateUsername">Full Name</label><br>
-                <input type="text" name="updateUsername" id="updateUsername"><span id="err1"></span>
+                <input type="text" name="updateUsername" id="updateUsername">
+            <span id="err1"></span>
                 <br>
                  <label for="updateEmail">Email Adress</label><br>
                 <input type="email" name="updateEmail" id="updateEmail">
@@ -86,9 +87,9 @@
             <h2>Delete User from List:</h2>
             <form action="">
                 <label for="email">Email Address</label><br>
-                <input type="text" id="delemail" name="email"><br>
+                <input type="text" id="delemail"  name="email"><br>
                 
-                <button type="submit"> <i class=" bi-dash"></i> Delete User  </button>
+                <button type="submit" onclick="deleteUser()"> <i class=" bi-dash"></i> Delete User  </button>
             </form>
          </div>
 

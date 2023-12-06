@@ -17,7 +17,7 @@ body{
     background-color: #FFC312;
     /* margin: 60px 160px; */
 
-    height:100vh ;
+    height:120vh ;
     /* border: 5px solid black; */
     /* border-radius: 20px; */
     position: relative;
@@ -38,9 +38,9 @@ body{
 .left{ position: relative;
     display: flex;
     flex-direction: column;
-    width: 0px;
-    padding: 20px 0px;
-  height:100vh ;
+    width: 40%;
+    padding: 20px 20px;
+  height:105vh ;
   align-items: center;
   background-color:#FFC312;
 box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -85,9 +85,14 @@ align-self: flex-end;
 .leftSpan i:hover{
     color: red
 }
+.menu .bi{
+    margin-right: 2px;
+     font-weight:bolder;
+    font-size: 20px;
+}
 #userLoginBtn{
   position: absolute;
-  bottom:100px;
+  bottom:120px;
 
    
 }
@@ -103,12 +108,14 @@ margin-top: 10px;
 .right{
  display: flex;
  width: 100%;
+ height: 100%;
  /* justify-content: center; */
  padding: 20px 70px;
  padding-right: 100px;
-
+background-color: #bdc3c7;
 
 }
+
 .usersList, .addNewUser,.deleteExtUser,.userLogin{
     width: 100%;
     color: #222f3e;
@@ -131,6 +138,17 @@ font-weight: 300;
     color: red;
 }
 
+.formBtn:hover{
+    border-bottom: blueviolet 1px solid;
+  line-height: 10px;
+  color: blue;
+}
+.formbtn2:hover {
+    border-bottom: darkred 1px solid;
+    line-height: 20px;
+    color: darkred;
+
+}
 .userList{
     width: 100%;
     /* background-color: #ffff; */
@@ -205,4 +223,7 @@ font-size: 2.5rem;
 
 .bi-box-arrow-in-left{
 margin-right: 2px;
+}
+#err1,#err2,#err3{
+    display: inline-block;
 }

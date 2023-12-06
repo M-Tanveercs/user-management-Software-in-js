@@ -147,7 +147,7 @@ userData.map((x,y)=>{
                                 <td>${x.name} </td>
                                 <td>${x.emails}</td>
                                 <td> <button class="formBtn "value="updateUserBtn" name="updateUser" id="updateUsers" onclick="updateCurrentUser()"><i class="bi bi-person-fill-gear"></i>Update</button>
-        <button class="formBtn formbtn2" value="deleteUserBtn" name="deleteUserBtn" id="deleteUserBtn" onclick="deleteUserFun()"><i class="bi bi-person-x-fill"></i>Discard</button></td>
+        <button class="formBtn formbtn2" value="deleteUserBtn" name="deleteUserBtn" id="deleteUserBtn" onclick="delCurentUser()"><i class="bi bi-person-x-fill"></i>Discard</button></td>
                             </tr>
                             
                  
@@ -160,32 +160,6 @@ const delReset = () => {
   console.log("delreset");
   emailDelete.value=""};
 
-let deleteUser = () => {
-  let delEmail = emailDelete.value;
-  console.log("emailDelete", delEmail);
-  if (delEmail === loggedInUserEmail){
-  const indexToDelete = userData.findIndex((user) => user.emails === delEmail);
-  console.log("indexToDelete", indexToDelete);
-  console.log("delete1");
-  if (indexToDelete !== -1) {
-    console.log("delete2");
-    userData.splice(indexToDelete, 1);
-    localStorage.setItem("userData", JSON.stringify(userData));
-    alert("user delete Successfully");
- 
-  } else {
-    alert("user Not found");
-  }}else{
-    alert("you can only can delete your own account")
-
-  }
-  delReset()
-  logout();
-};
-deleteExtUser.addEventListener("submit", (e) => {
-  e.preventDefault();
-  deleteUser();
-});
 let userLoginForm = document.getElementById("userLoginForm");
 
 
@@ -236,6 +210,49 @@ userLoginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     loginAccount();
 });
+
+
+
+
+  let delCurentUser=()=>{
+      usersList.style.display = "none";
+      updateUserData.style.display = "none";
+      deleteExtUser.style.display = "block";
+      userLogin.style.display = "none";
+      addNewUser.style.display = "none";
+      const currentUserEmail=loggedInUserEmail;
+      const currentUser=userData.find(user=>user.emails===currentUserEmail)
+      if(currentUser){
+        
+        document.getElementById("delemail").value=currentUser.emails
+      }else{
+        alert("user Not found Please login and then try!!!");
+      }
+  }
+let deleteUser = () => {
+  let oldEmail = loggedInUserEmail;
+
+  
+  const indexToDelete = userData.findIndex((user) => user.emails === oldEmail);
+  console.log("indexToDelete", indexToDelete);
+  if (indexToDelete !== -1) {
+    console.log("delete2");
+    userData.splice(indexToDelete, 1);
+    localStorage.setItem("userData", JSON.stringify(userData));
+    alert("user delete Successfully");
+ 
+  } else {
+    alert("user Not found Please login and then try!!!");
+  }
+
+  
+ 
+  logout();
+} ;
+// deleteExtUser.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   deleteUser();
+// });
 
 
 const updateCurrentUser =()=>{
