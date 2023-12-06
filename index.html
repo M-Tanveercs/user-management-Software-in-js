@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMS &copy;</title>
+
+    <link rel="stylesheet" href="style.css">
+      <link rel="shortcut icon" href="imge.png" type="image/x-icon">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="userMangement">
+        <div class="header">
+            <h1>UMS.pk</h1>
+            <h3 id="userName">Hello, Guest</h3>
+            <button onclick="logout()" class="logout" id="logout"><i class="bi  bi-box-arrow-in-left"></i>logout</button>
+        </div>
+        <div class="content">
+        <div class="left">
+           <button value="allUserListBtn" name="allUserListBtn" id="allUserListBtn" onclick="allUserListFun()"> <i class="bi bi-people-fill"></i> Genrate User List</button>
+        <button value="addUserBtn" name="addUserBtn" id="addUserBtn" onclick="addUserFun()"> <i class="bi bi-person-fill-add"></i>Add User</button>
+        <button value="updateUserBtn" name="updateUser" id="updateUsers" onclick="updateCurrentUser()"><i class="bi bi-person-fill-gear"></i>Update User</button>
+        <button value="deleteUserBtn" name="deleteUserBtn" id="deleteUserBtn" onclick="deleteUserFun()"><i class="bi bi-person-x-fill"></i>Delete User</button>
+        <hr color="#ff9f43">
+        <button value="userLoginBtn" name="userLoginBtn" id="userLoginBtn" onclick="userLoginFun()"><i class="bi bi-box-arrow-in-right"></i>User Login</button>
+
+        </div>
+        <div class="right" id="mainContent">
+         <div class="usersList" id="usersList">
+             <h2>Current User List</h2>
+             <p>We have following users avilable in our list:</p>
+             <div class="userList" id="userList">
+                
+             </div>
+         </div>
+
+         <div class="addNewUser" id="addNewUser">
+            <h2>Add New User:</h2>
+            <form action="" id="submit">
+                <label for="fullName">Full Name</label><br>
+                <input type="text" name="fullName" id="username"><span id="err1"></span>
+                <br>
+                 <label for="email">Email Adress</label><br>
+                <input type="email" name="email" id="email">
+                <span id="err2"></span><br>
+                 <label for="password">Password</label><br>
+                <input type="text" name="password" id="password"><span id="err3"></span><br>
+                <button type="submit" > <i class=" bi-plus"></i> Add User  </button>
+            </form>
+         </div>
+         
+          <div class="addNewUser" id="updateUser">
+            <h2>Update Current User:</h2>
+            <form action=""  id="updateUserForm" >
+                <label for="updateUsername">Full Name</label><br>
+                <input type="text" name="updateUsername" id="updateUsername"><span id="err1"></span>
+                <br>
+                 <label for="updateEmail">Email Adress</label><br>
+                <input type="email" name="updateEmail" id="updateEmail">
+                <span id="err2"></span><br>
+                 <label for="updatePassword">Password</label><br>
+                <input type="text" name="updatePassword" id="updatePassword"><span id="err3"></span><br>
+               <button type="button" onclick="updateUser()">Update User</button>
+            </form>
+         </div>
+       
+
+           <div class="deleteExtUser" id="deleteExtUser">
+            <h2>Delete User from List:</h2>
+            <form action="">
+                <label for="email">Email Address</label><br>
+                <input type="text" id="delemail" name="email"><br>
+                
+                <button type="submit"> <i class=" bi-dash"></i> Delete User  </button>
+            </form>
+         </div>
+
+         <div class="userLogin" id="userLogin">
+            <h2>Login User Account:</h2>
+            <form action="" id="userLoginForm">
+                <label for="email">Email Address</label><br>
+                <input type="text" id="logEmail" name="email"><br>
+                 <label for="login password">Password</label><br>
+                <input type="text" name="logPassword" id="LogPassword"><br>
+                <button type="submit">  Login Now  </button>
+            </form>
+         </div>
+        </div>
+
+
+</div>
+       
+    </div>
+
+<script src="main.js"></script>
+</body>
+</html>
