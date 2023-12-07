@@ -151,11 +151,16 @@ const userLoginFun=()=>{
   return true;
 }
 
+let generateid = () => {
+  // Generate a unique key using a combination of timestamp and random number
+  return `${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+};
 
 let userData=[]
-
+let parentid = generateid();
 let acceptData=()=>{
     userData.push({
+      id: parentid,
       name: username.value,
       emails: email.value,
       passwords: password.value,
@@ -164,13 +169,21 @@ let acceptData=()=>{
     console.log("userData", userData);
     allUserListFun();
 }
-
-
+let openUpdateForm = (parentid) => {
+  // Pass the parent ID to the form 2 HTML file
+  
+// let userToup = userData.map((user) => user.id);
+// let user_toupdate = String(userToup);
+// console.log(user_toupdate);
+  window.open(`update.html?id=${parentid}`, "_blank");
+};
 
 let table = document.getElementById("table");
 const displayEmail=()=>{
 table.innerHTML = "";
+let parentid;
 userData.map((x,y)=>{
+  parentid=x.id;
     return (table.innerHTML += `
 
 
@@ -178,7 +191,7 @@ userData.map((x,y)=>{
                                 
                                 <td>${x.name} </td>
                                 <td>${x.emails}</td>
-                                <td> <button class="formBtn "value="updateUserBtn" name="updateUser" id="updateUsers" onclick="updateCurrentUser()"><i class="bi bi-person-fill-gear"></i>Update</button>
+                                <td> <button class="formBtn "value="updateUserBtn" name="updateUser" id="updateUsers" onclick="openUpdateForm('${parentid}')"><i class="bi bi-person-fill-gear"></i>Update</button>
         <button class="formBtn formbtn2" value="deleteUserBtn" name="deleteUserBtn" id="deleteUserBtn" onclick="delCurentUser()"><i class="bi bi-person-x-fill"></i>Discard</button></td>
                             </tr>
                             
@@ -344,47 +357,47 @@ let deleteUser = () => {
 // });
 
 
-const updateCurrentUser =()=>{
-   usersList.style.display = "none";
-   updateUserData.style.display = "block";
-   deleteExtUser.style.display = "none";
-   userLogin.style.display = "none";
-   addNewUser.style.display = "none";
-  const currentUserEmail=loggedInUserEmail;
-  const currentUser=userData.find(user=>user.emails===currentUserEmail)
-  if(currentUser){
-    document.getElementById("updateUsername").value=currentUser.name;
-    document.getElementById("updateEmail").value=currentUser.emails;
-    document.getElementById("updatePassword").value=currentUser.passwords;
-  }else{
-    alert("user not Found . Plese check your login")
-  }
-}
+// const updateCurrentUser =()=>{
+//    usersList.style.display = "none";
+//    updateUserData.style.display = "block";
+//    deleteExtUser.style.display = "none";
+//    userLogin.style.display = "none";
+//    addNewUser.style.display = "none";
+//   const currentUserEmail=loggedInUserEmail;
+//   const currentUser=userData.find(user=>user.emails===currentUserEmail)
+//   if(currentUser){
+//     document.getElementById("updateUsername").value=currentUser.name;
+//     document.getElementById("updateEmail").value=currentUser.emails;
+//     document.getElementById("updatePassword").value=currentUser.passwords;
+//   }else{
+//     alert("user not Found . Plese check your login")
+//   }
+// }
 
 
 
 
 
 
-const updateUser = () => {
-  let oldEmail=loggedInUserEmail
+// const updateUser = () => {
+//   let oldEmail=loggedInUserEmail
     
-    const indexToUpdate = userData.findIndex(
-      (user) => user.emails === oldEmail
-    );
+//     const indexToUpdate = userData.findIndex(
+//       (user) => user.emails === oldEmail
+//     );
 
-    if (indexToUpdate !== -1) {
-        userData[indexToUpdate].name = document.getElementById("updateUsername").value;
-        userData[indexToUpdate].emails = document.getElementById("updateEmail").value;
-        userData[indexToUpdate].passwords = document.getElementById("updatePassword").value;
-        localStorage.setItem("userData", JSON.stringify(userData));
-        alert("User updated successfully");
-        displayEmail(); // Update the displayed user list
-        // resetUpdateForm(); // Reset the form after updating
-    } else {
-        alert("User not found");
-    }
-}
+//     if (indexToUpdate !== -1) {
+//         userData[indexToUpdate].name = document.getElementById("updateUsername").value;
+//         userData[indexToUpdate].emails = document.getElementById("updateEmail").value;
+//         userData[indexToUpdate].passwords = document.getElementById("updatePassword").value;
+//         localStorage.setItem("userData", JSON.stringify(userData));
+//         alert("User updated successfully");
+//         displayEmail(); // Update the displayed user list
+//         // resetUpdateForm(); // Reset the form after updating
+//     } else {
+//         alert("User not found");
+//     }
+// }
  
 let show=()=>{
   document.getElementById("left").style.width="40%"

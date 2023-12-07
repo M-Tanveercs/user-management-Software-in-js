@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+      #iframe{
+width:100vw;
+height:88px;
+
+border: none;
+      }
+
+    </style>
 </head>
 <body>
-     <div class="addNewUser" id="updateUser">
+  <iframe  id="iframe" src="header.html"  scrolling="no"  title="Iframe Example"></iframe>
+     <div class="addNewUser updateUser" id="updateUser">
             <h2>Update Current User:</h2>
             <form action=""  id="updateUserForm" >
                 <label for="updateUsername">Full Name</label><br>
@@ -23,6 +33,71 @@
             </form>
          </div>
 
-         <script src="main.js"></script>
-</body>
+         
+      
+     
+        </body>
+          <script>
+            let userData
+             (() => {
+   userData = JSON.parse(localStorage.getItem("userData")) || [];
+  console.log("userData",userData);
+
+})();
+//   let userToLog = userData.map((x,y) =>{
+// document.getElementById("updateUsername").value=`${x.name}`
+//  document.getElementById("updateEmail").value=`${x.emails}`
+//  document.getElementById("updatePassword").value=`${x.passwords}`
+
+//   } );
+
+// console.log("userdataId",String(userToLog));
+//  const userToLogin = userData.includes(userToLog)
+//  console.log("new",userToLogin);
+//  document.getElementById("updateUsername").value=`${userToLog}`
+//  document.getElementById("updateEmail").value=`${userToLog}`
+//  document.getElementById("updateUsername").value=`${userToLog}`
+             const urlParams = new URLSearchParams(window.location.search);
+  const parentId = urlParams.get("id");
+  console.log("parentId",parentId);
+
+  const userToupdatein = userData.find(user => user.id === parentId);
+  console.log("userToupdatein");
+
+  for (let index = 0; index < userData.length; index++) {
+    const element = userData[index];
+    console.log("element",element.id);
+    if(element.id===parentId){
+      console.log(element.name,element.emails,element.passwords);
+      document.getElementById("updateUsername").value=`${element.name}`;
+ document.getElementById("updateEmail").value=`${element.emails}`;
+ document.getElementById("updatePassword").value=`${element.passwords}`;
+    }
+  }
+  
+  
+const updateUser = () => {
+  
+    
+    const indexToUpdate = userData.findIndex(
+      (user) => user.id === parentId
+    );
+
+    if (indexToUpdate !== -1) {
+        userData[indexToUpdate].name = document.getElementById("updateUsername").value;
+        userData[indexToUpdate].emails = document.getElementById("updateEmail").value;
+        userData[indexToUpdate].passwords = document.getElementById("updatePassword").value;
+        localStorage.setItem("userData", JSON.stringify(userData));
+        alert("User updated successfully");
+        displayEmail(); // Update the displayed user list
+        // resetUpdateForm(); // Reset the form after updating
+    } else {
+        alert("User not found");
+    }
+}
+
+//    const userToupdate = userData.includes(parentId)
+//    console.log("userToupdate",userToupdate);
+  
+        </script>
 </html>

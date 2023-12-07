@@ -165,9 +165,16 @@ transition-delay: .3s;
     font-weight: 500;
         font-size: 1rem;
 }
+.updateUser{
+    padding:50px;
+}.updateUser form input{
+    padding-left: 10px;
+}
+
 .addNewUser form input,
 .deleteExtUser form input,
-.userLogin form input{
+.userLogin form input
+{
     
     width: 90%;
     height: 35px;
