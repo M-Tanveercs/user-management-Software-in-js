@@ -142,12 +142,13 @@ font-weight: 300;
     border-bottom: blueviolet 1px solid;
   line-height: 10px;
   color: blue;
+  transition-delay: .2s;
 }
 .formbtn2:hover {
     border-bottom: darkred 1px solid;
     line-height: 20px;
     color: darkred;
-
+transition-delay: .3s;
 }
 .userList{
     width: 100%;

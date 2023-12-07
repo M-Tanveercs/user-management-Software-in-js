@@ -17,13 +17,16 @@ let emailDelete = document.getElementById("delemail")
 let updateEmail=document.getElementById("")
 let logoutVar = document.getElementById("logout");
 let updateUserData = document.getElementById("updateUser");
-usersList.style.display="none"
+usersList.style.display="block"
 addNewUser.style.display = "none"
 deleteExtUser.style.display = "none"; 
 userLogin.style.display = "none"; 
 logoutVar.style.display="none";
 updateUserData.style.display="none"
 
+
+
+  
 let loggedInUserEmail;
 submit.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -32,35 +35,64 @@ submit.addEventListener("submit", (e) => {
 
 const formValidation=()=>{
 {
-    if (username.value == "") {
-      document.getElementById("err1").innerHTML = "user name required";
-        document.getElementById("username").focus();
-      return false;
-    }else{
- document.getElementById("err1").innerHTML = "";
-    }
-    if (email.value == "") {
-      document.getElementById("err2").innerHTML = "email is required";
-       document.getElementById("email").focus();
-      return false;
-    }else{
-          document.getElementById("err2").innerHTML = "";
-    }
-    if (password.value == "") {
-      document.getElementById("err3").innerHTML = "password is required";
-      document.getElementById("password").focus();
-      return false;
-    }else{
-        document.getElementById("err3").innerHTML = "";
-    }
+  if (username.value == "") {
+    document.getElementById("err1").innerHTML = "user name required";
+    document.getElementById("username").focus();
+    return false;
+  } else {
+    document.getElementById("err1").innerHTML = "";
+  }
+  // userData = JSON.parse(localStorage.getItem("userData")) || [];
+  let userToLog = userData.map((user) => user.emails);
+
+  console.log("Provided Email:", email.value);
+  console.log("Existing Emails:", userToLog);
+
+  if (email.value === "") {
+    document.getElementById("err2").innerHTML = "Email is required";
+    document.getElementById("email").focus();
+    return false;
+  } else if (userToLog.includes(email.value)) {
+    console.log("Email already exists");
+    document.getElementById("err2").innerHTML = "Email is already in use";
+    document.getElementById("email").focus();
+    return false;
+  } else {
+    document.getElementById("err2").innerHTML = "";
+  }
+
+  if (password.value == "") {
+    document.getElementById("err3").innerHTML = "password is required";
+    document.getElementById("password").focus();
+    return false;
+  } else {
+    document.getElementById("err3").innerHTML = "";
+  }
 }
 // resetForm();
-alert("User Add Successfully")
+// alert("User Add Successfully")
+ let delbtn2 = document.getElementById("delbtn");
+ delbtn2.style.display = "none";
+ let updatebtn = document.getElementById("updatebtn");
+ updatebtn.style.display = "none";
+ document.getElementById("exampleModalLongTitle").innerHTML =
+   "New User Add Notification!";
+ document.getElementById("modal-body").innerHTML =
+   "The new user added successfully";
+ document.getElementById("btnDelete").innerHTML = "Close";
+
+ $("#exampleModalCenter").modal("show");
+
 acceptData();
 resetForm();
+ 
 return true;
 
 }
+const modalClose = () => {
+  $("#exampleModalCenter").modal("hide");
+};
+
  const resetForm=()=>{
     console.log("reset");
     username.value = "";
@@ -130,7 +162,7 @@ let acceptData=()=>{
     });
     localStorage.setItem("userData",JSON.stringify(userData));
     console.log("userData", userData);
-    
+    allUserListFun();
 }
 
 
@@ -177,20 +209,50 @@ const loginAccount = () => {
     const userToLogin = userData.find(user => user.emails === loginEmail);
 console.log("userToLogin", userToLogin);
     if (!userToLogin) {
-        alert("Email does not exist. Please check your email or register an account.");
+      $("#exampleModalCenter").modal("show");
+      document.getElementById("updatebtn").style.display = "none";
+      let delbtn2 = document.getElementById("delbtn");
+      delbtn2.style.display = "none";
+      document.getElementById("exampleModalLongTitle").innerHTML =
+        "Email  not exist Notification!";
+      document.getElementById("modal-body").innerHTML =
+        "Email does not exist. Please check your email or register an account.";
+      document.getElementById("btnDelete").innerHTML = "Ok";
+        
     } else {
         if (userToLogin.passwords === loginPassword) {
-            alert(`Welcome, ${userToLogin.name}! Login successful`);
+
+          $("#exampleModalCenter").modal("show");
+          document.getElementById("updatebtn").style.display = "none";
+          let delbtn2 = document.getElementById("delbtn");
+          delbtn2.style.display = "none";
+          document.getElementById("exampleModalLongTitle").innerHTML =
+            "Login Notification!";
+          document.getElementById(
+            "modal-body"
+          ).innerHTML = `Welcome, ${userToLogin.name}! Login successful`;
+          document.getElementById("btnDelete").innerHTML = "close";
+            
             loggedInUserEmail = userToLogin.emails; // Store the email of the logged-in user
             updateHeader(userToLogin.name);
             logoutVar.style.display = "block";
             
         } else {
-            alert("Password does not match. Please check your password.");
+              $("#exampleModalCenter").modal("show");
+              document.getElementById("updatebtn").style.display = "none";
+              let delbtn2 = document.getElementById("delbtn");
+              delbtn2.style.display = "none";
+              document.getElementById("exampleModalLongTitle").innerHTML =
+                "Password  not match Notification!";
+              document.getElementById("modal-body").innerHTML =
+                "Password does not match. Please check your password.";
+              document.getElementById("btnDelete").innerHTML = "Ok";
+         
         }
     }
     loginRest();
-   
+ allUserListFun()
+
 }
 
 
@@ -215,18 +277,46 @@ userLoginForm.addEventListener("submit", (e) => {
 
 
   let delCurentUser=()=>{
-      usersList.style.display = "none";
+
+  
+
+
+      usersList.style.display = "block";
       updateUserData.style.display = "none";
-      deleteExtUser.style.display = "block";
+      deleteExtUser.style.display = "none";
       userLogin.style.display = "none";
       addNewUser.style.display = "none";
       const currentUserEmail=loggedInUserEmail;
       const currentUser=userData.find(user=>user.emails===currentUserEmail)
       if(currentUser){
+          $("#exampleModalCenter").modal("show");
+          document.getElementById("updatebtn").style.display = "none";
+          let delbtn2 = document.getElementById("delbtn");
+          delbtn2.style.display = "block";
+          document.getElementById("exampleModalLongTitle").innerHTML =
+            "User Delete Notification!";
+          document.getElementById("modal-body").innerHTML =
+            `Are You Sure to Delete ${currentUser.name} Account`;
+            
+  document.getElementById("btnDelete").innerHTML = "No";
+  document.getElementById("delbtn").addEventListener("click", function () {
+document.getElementById("delemail").value = currentUser.emails;
+    deleteUser()
+
+    $("#exampleModalCenter").modal("hide");
+  });
         
-        document.getElementById("delemail").value=currentUser.emails
       }else{
-        alert("user Not found Please login and then try!!!");
+         $("#exampleModalCenter").modal("show");
+         document.getElementById("updatebtn").style.display = "none";
+         let delbtn2 = document.getElementById("delbtn");
+         delbtn2.style.display = "none";
+         document.getElementById("exampleModalLongTitle").innerHTML =
+           "User Not Found Notification!";
+         document.getElementById("modal-body").innerHTML =
+           "User not found Please login and then try!!!";
+           document.getElementById("btnDelete").innerHTML = "Ok";
+        // alert("user Not found Please login and then try!!!");
       }
   }
 let deleteUser = () => {
@@ -236,14 +326,13 @@ let deleteUser = () => {
   const indexToDelete = userData.findIndex((user) => user.emails === oldEmail);
   console.log("indexToDelete", indexToDelete);
   if (indexToDelete !== -1) {
+     
     console.log("delete2");
     userData.splice(indexToDelete, 1);
     localStorage.setItem("userData", JSON.stringify(userData));
-    alert("user delete Successfully");
+   
  
-  } else {
-    alert("user Not found Please login and then try!!!");
-  }
+  } 
 
   
  

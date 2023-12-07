@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <div class="addNewUser" id="updateUser">
+            <h2>Update Current User:</h2>
+            <form action=""  id="updateUserForm" >
+                <label for="updateUsername">Full Name</label><br>
+                <input type="text" name="updateUsername" id="updateUsername">
+            <span id="err1"></span>
+                <br>
+                 <label for="updateEmail">Email Adress</label><br>
+                <input type="email" name="updateEmail" id="updateEmail">
+                <span id="err2"></span><br>
+                 <label for="updatePassword">Password</label><br>
+                <input type="text" name="updatePassword" id="updatePassword"><span id="err3"></span><br>
+               <button type="button" onclick="updateUser()">Update User</button>
+            </form>
+         </div>
+
+         <script src="main.js"></script>
+</body>
+</html>
