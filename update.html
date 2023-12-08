@@ -44,19 +44,7 @@ border: none;
   console.log("userData",userData);
 
 })();
-//   let userToLog = userData.map((x,y) =>{
-// document.getElementById("updateUsername").value=`${x.name}`
-//  document.getElementById("updateEmail").value=`${x.emails}`
-//  document.getElementById("updatePassword").value=`${x.passwords}`
 
-//   } );
-
-// console.log("userdataId",String(userToLog));
-//  const userToLogin = userData.includes(userToLog)
-//  console.log("new",userToLogin);
-//  document.getElementById("updateUsername").value=`${userToLog}`
-//  document.getElementById("updateEmail").value=`${userToLog}`
-//  document.getElementById("updateUsername").value=`${userToLog}`
              const urlParams = new URLSearchParams(window.location.search);
   const parentId = urlParams.get("id");
   console.log("parentId",parentId);
@@ -74,7 +62,7 @@ border: none;
  document.getElementById("updatePassword").value=`${element.passwords}`;
     }
   }
-  
+ 
   
 const updateUser = () => {
   
@@ -89,15 +77,12 @@ const updateUser = () => {
         userData[indexToUpdate].passwords = document.getElementById("updatePassword").value;
         localStorage.setItem("userData", JSON.stringify(userData));
         alert("User updated successfully");
-        displayEmail(); // Update the displayed user list
-        // resetUpdateForm(); // Reset the form after updating
-    } else {
-        alert("User not found");
+       window.location="index.html"
     }
+  
 }
 
-//    const userToupdate = userData.includes(parentId)
-//    console.log("userToupdate",userToupdate);
+
   
         </script>
 </html>
