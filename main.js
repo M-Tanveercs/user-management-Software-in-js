@@ -429,10 +429,17 @@ const srT = ScrollReveal({
   reset: true,
 });
 srT.reveal(".leftSpan", { delay: 200 });
+<<<<<<< HEAD
 srT.reveal(".left button", { delay: 200 });
 
 
 srT.reveal(".usersList", {  easing: 'ease-in' });
+=======
+srT.reveal(".left a", { delay: 200 });
+
+
+srT.reveal(".usersList", {  });
+>>>>>>> a945db793ff2b9d49dd4b6b819dcdb114b492a54
 srT.reveal(".userList-h2", { delay: 200 });
 srT.reveal(".userlist-p", { delay: 200 });
 
