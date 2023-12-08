@@ -167,9 +167,45 @@ transition-delay: .3s;
         font-size: 1rem;
 }
 .updateUser{
-    padding:50px;
-}.updateUser form input{
+
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+/* justify-content: center; */
+background-color: #bdc3c7;
+    width: 100%;
+    padding:20px;
+    height: 90vh;
+
+}.updateUser h2{
+    align-self: flex-start;
+   margin-left: 320px;
+   margin-bottom: 20px;
+}
+.updateUser form{
+   width: 50%;
+   height: 50vh;
+   background-color:rgba(0, 255, 255, .1);
+   padding: 20px;
+   border-radius: 20px;
+   /* border: #222f3e 2px solid;     */
+box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  
+   align-items: center;
+}
+.updateUser form input{
     padding-left: 10px;
+    
+    
+}
+.updateUser button:hover{
+    background-color: #e8c14b;
+    color: #222f3e;
+    transition:ease;
+    transition-delay: .3s;
+    transition-duration: .5s;
+    tran
 }
 
 .addNewUser form input,

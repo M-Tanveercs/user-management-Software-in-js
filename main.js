@@ -175,7 +175,7 @@ let openUpdateForm = (parentid) => {
 // let userToup = userData.map((user) => user.id);
 // let user_toupdate = String(userToup);
 // console.log(user_toupdate);
-  window.open(`update.html?id=${parentid}`, "_blank");
+  window.open(`update.html?id=${parentid}`, "_self");
 };
 
 let table = document.getElementById("table");
@@ -407,6 +407,37 @@ let hideMenue=()=>{
   document.getElementById("left").style.width = "0px";
   document.getElementById("left").style.padding = "20px 0px";
 }
+
+// Scroll Animation
+const sr = ScrollReveal({
+    origin: 'left',
+    distance:'85px',
+    duration:2000,
+    reset: true
+})
+
+
+
+sr.reveal(".header-h1", {});
+sr.reveal(".userName", { delay: 200 });
+sr.reveal(".logout", { delay: 200 });
+
+const srT = ScrollReveal({
+  origin: "top",
+  distance: "85px",
+  duration: 2000,
+  reset: true,
+});
+srT.reveal(".leftSpan", { delay: 200 });
+srT.reveal(".left button", { delay: 200 });
+
+
+srT.reveal(".usersList", {  easing: 'ease-in' });
+srT.reveal(".userList-h2", { delay: 200 });
+srT.reveal(".userlist-p", { delay: 200 });
+
+
+
 
 
 
