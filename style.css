@@ -30,6 +30,18 @@ body{
     color: white;
 
 }
+.page{
+    width: 95vw;
+   position: absolute;
+margin-left: 40%;
+/* float: right; */
+}
+.header h1 {
+ cursor: pointer;
+}
+.paginate-btn.active{
+background-color:rgb(155, 86, 220) !important;
+}
 .content{
     display:  flex;
     justify-content: space-between;
@@ -205,7 +217,6 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
     transition:ease;
     transition-delay: .3s;
     transition-duration: .5s;
-    tran
 }
 
 .addNewUser form input,

@@ -17,6 +17,10 @@ let emailDelete = document.getElementById("delemail")
 let updateEmail=document.getElementById("")
 let logoutVar = document.getElementById("logout");
 let updateUserData = document.getElementById("updateUser");
+let paginationBox = document.querySelector(".pagination-box");
+let prevBtn = document.querySelector(".pev-btn");
+let nextBtn = document.querySelector(".next-btn");
+
 usersList.style.display="block"
 addNewUser.style.display = "none"
 deleteExtUser.style.display = "none"; 
@@ -110,7 +114,7 @@ const allUserListFun=()=>{
       updateUserData.style.display = "none";
       usersList.style.display = "block";
       
-      displayEmail();
+      displayEmail(0,3);
       return true
 }
 
@@ -179,12 +183,13 @@ let openUpdateForm = (parentid) => {
 };
 
 let table = document.getElementById("table");
-const displayEmail=()=>{
+const displayEmail=(from,to)=>{
 table.innerHTML = "";
 let parentid;
-userData.map((x,y)=>{
-  parentid=x.id;
-    return (table.innerHTML += `
+let filter= userData.slice(from,to)
+filter.map((x, y) => {
+  parentid = x.id;
+  return (table.innerHTML += `
 
 
                             <tr class="" id="${y + 1}  scope="row">
@@ -198,7 +203,7 @@ userData.map((x,y)=>{
                  
                
     `);
-})
+});
 }
 
 const delReset = () => {
@@ -249,6 +254,7 @@ console.log("userToLogin", userToLogin);
             loggedInUserEmail = userToLogin.emails; // Store the email of the logged-in user
             updateHeader(userToLogin.name);
             logoutVar.style.display = "block";
+            console.log(logoutVar);
             
         } else {
               $("#exampleModalCenter").modal("show");
@@ -272,6 +278,7 @@ console.log("userToLogin", userToLogin);
 const updateHeader = (userName) => {
     const headerUserName = document.getElementById("userName");
     headerUserName.textContent = `Hello, ${userName}`;
+    
 }
 let logout=()=>{
    loggedInUserEmail = null;
@@ -420,7 +427,7 @@ const sr = ScrollReveal({
 
 sr.reveal(".header-h1", {});
 sr.reveal(".userName", { delay: 200 });
-sr.reveal(".logout", { delay: 200 });
+
 
 const srT = ScrollReveal({
   origin: "top",
@@ -428,6 +435,7 @@ const srT = ScrollReveal({
   duration: 2000,
   reset: true,
 });
+
 srT.reveal(".leftSpan", { delay: 200 });
 srT.reveal(".left a", { delay: 200 });
 
@@ -455,6 +463,73 @@ srT.reveal(".userlist-p", { delay: 200 });
 
 })();
 
+let len = Number(userData.length / 3);
+let i, dataSkip=0, loadData=3;
+if (len.toString().indexOf(".") != -1) {
+  len = len + 1;
+}
+console.log(len);
+console.log(paginationBox);
+for (i = 1; i < len; i++) {
+  paginationBox.innerHTML += `
+ <button data-skip=${dataSkip} data-load=${loadData} class="btn paginate-btn">${i}</button>`;
+ dataSkip = dataSkip+3;
+ loadData=loadData+3
+ 
+}
+let allpagenateBtn = document.querySelectorAll(".paginate-btn");
+console.log(allpagenateBtn);
+allpagenateBtn[0].classList.add('active')
+console.log( typeof allpagenateBtn);
+allpagenateBtn.forEach(btn => {
+   
+      btn.onclick=()=>{
+        for (const elm of allpagenateBtn ) {
+          elm.classList.remove("active");
+        }
+        btn.classList.add("active");
+        let skip = btn.getAttribute("data-skip");
+        let loaded = btn.getAttribute("data-load");
+        // alert(skip)
+        // alert(loaded  )
+        displayEmail(skip, loaded);
+      }
+}); 
 
 
+nextBtn.onclick=()=>{
+  let currentIndex=0;
+  allpagenateBtn.forEach((btn,index)=>{
+if(btn.classList.contains("active")){
+  currentIndex=index
+}
+  })
+ allpagenateBtn[currentIndex+1].click();
+ controlPrevAndNext(allpagenateBtn,currentIndex+1)
+}
+prevBtn.onclick = () => {
+  let currentIndex = 0;
+  allpagenateBtn.forEach((btn, index) => {
+    if (btn.classList.contains("active")) {
+      currentIndex = index;
+    }
+  });
+  allpagenateBtn[currentIndex - 1].click();
+  controlPrevAndNext(allpagenateBtn, currentIndex - 1);
+};
+const controlPrevAndNext=(allpagenateBtn,currentIndex)=>{
+  let leng=allpagenateBtn.length-1;
+if(currentIndex==leng){
+  console.log(nextBtn);
+  
+nextBtn.classList.add("disabled");
 
+}else if(currentIndex>0){
+  nextBtn.classList.remove("disabled");
+  nextBtn.classList.add("active");
+  prevBtn.classList.remove("disabled");
+  prevBtn.classList.add("active");
+}else{
+  prevBtn.classList.add("disabled");
+}
+}

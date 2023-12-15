@@ -17,7 +17,7 @@
 <body>
     <div class="userMangement">
         <div class="header">
-            <h1 class="header-h1">UMS.pk <span class="menu" id="menu"onclick="show()" ><i class="bi bi-list"></i>Menu </span></h1>
+            <h1 class="header-h1" onclick="window.location.reload()">UMS.pk <span class="menu" id="menu"onclick="show()" ><i class="bi bi-list"></i>Menu </span></h1>
             <h3 id="userName" class="userName">Hello, Guest</h3>
             <button onclick="logout()" class="logout" id="logout"><i class="bi  bi-box-arrow-in-left"></i>logout</button>
         </div>
@@ -40,6 +40,7 @@
                <table class="table table-striped table-hover" >
   <thead>
                             <tr>
+                                  
                                 <th scope="col">Name</th>
                                 <th scope="col">E-mail</th>
                                 <th scope="col">Action</th>
@@ -51,8 +52,25 @@
 
                        </tbody>
                </table>
-                 
+                             <nav class="page" aria-label="...">
+  <ul class="pagination">
+    <li class="page-item  disabled pev-btn">
+      <span class="page-link ">Previous</span>
+    </li>
+     <div class="btn-group pagination-box">
+
+     </div>
+    <!-- <li class="page-item active" aria-current="page">
+      <span class="page-link">2</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+    <li class="page-item next-btn">
+      <a class="page-link " href="#">Next</a>
+    </li>
+  </ul>
+</nav>
              </div>
+ 
          </div>
 
          <div class="addNewUser" id="addNewUser">
