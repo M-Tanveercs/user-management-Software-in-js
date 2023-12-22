@@ -162,9 +162,11 @@ let generateid = () => {
 
 let userData=[]
 let parentid = generateid();
+id=1
 let acceptData=()=>{
     userData.push({
       id: parentid,
+      rowid:id++,
       name: username.value,
       emails: email.value,
       passwords: password.value,
@@ -182,9 +184,29 @@ let openUpdateForm = (parentid) => {
   window.open(`update.html?id=${parentid}`, "_self");
 };
 
+const handleSortChange = () => {
+  const sortOptions = document.getElementById("sortOptions");
+  const selectedOption = sortOptions.value.split("-");
+  const criterion = selectedOption[0];
+  const order = selectedOption[1];
+
+  sortUserData(criterion, order);
+};
+const sortUserData = (criterion, order) => {
+  userData.sort((a, b) => {
+    const comparison = a[criterion].localeCompare(b[criterion]);
+    return order === "asc" ? comparison : -comparison;
+  });
+  // After sorting, display the data
+  displayEmail(0, 3);
+};
+
 let table = document.getElementById("table");
 const displayEmail=(from,to)=>{
 table.innerHTML = "";
+
+  
+
 let parentid;
 let filter= userData.slice(from,to)
 filter.map((x, y) => {
@@ -193,7 +215,7 @@ filter.map((x, y) => {
 
 
                             <tr class="" id="${y + 1}  scope="row">
-                                
+                                <td>${x.rowid}</td>
                                 <td>${x.name} </td>
                                 <td>${x.emails}</td>
                                 <td> <button class="formBtn "value="updateUserBtn" name="updateUser" id="updateUsers" onclick="openUpdateForm('${parentid}')"><i class="bi bi-person-fill-gear"></i>Update</button>
@@ -204,6 +226,41 @@ filter.map((x, y) => {
                
     `);
 });
+}
+
+
+let search = document.getElementById("search")
+
+
+const handleSearch =()=>{
+  let searchTerm=search.value.toLowerCase()
+  let filterData=userData.filter(
+    (user)=>user.name.toLowerCase().includes(searchTerm)
+    || user.emails.toLowerCase().includes(searchTerm)
+  )
+  displayFilterData(filterData)
+}
+search.addEventListener("input", handleSearch);
+const displayFilterData=(filterData)=>{
+  let tableBody=document.getElementById('table')
+  tableBody.innerHTML=""
+  filterData.forEach((user)=>{
+    tableBody.innerHTML+=`
+    <tr>
+        <td>${user.rowid}</td>
+        <td>${user.name}</td>
+        <td>${user.emails}</td>
+        <td>
+          <button class="formBtn" onclick="openUpdateForm('${user.id}')">
+            <i class="bi bi-person-fill-gear"></i>Update
+          </button>
+          <button class="formBtn formbtn2" onclick="delCurentUser()">
+            <i class="bi bi-person-x-fill"></i>Discard
+          </button>
+        </td>
+      </tr>
+    `
+  })
 }
 
 const delReset = () => {

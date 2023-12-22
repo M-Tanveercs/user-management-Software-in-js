@@ -31,10 +31,16 @@ body{
 
 }
 .page{
-    width: 95vw;
+    width: 50%;
    position: absolute;
 margin-left: 40%;
 /* float: right; */
+display: inline-block;
+
+}
+.leftHeader{
+display: flex;
+flex-direction: row;
 }
 .header h1 {
  cursor: pointer;
@@ -77,8 +83,22 @@ transition: 0.9s ease-in-out;
 }.menu{
     color: #FFC312;
     font-size: 22px;
-    margin-left: 50px;
+    margin-left: 90px;
     border-bottom: #FFC312 1px solid;
+   /* background-color: aliceblue; */
+   height: 35px;
+
+}
+.sort label{
+    padding: 5px;
+    background-color: #222f3e;
+    color: #ffff;
+}
+.sort select{
+    padding: 5px;
+    outline: none;
+    border: none;
+    margin-left: -5px;
 }
 .menu:hover{
     color: white;
@@ -136,7 +156,7 @@ background-color: #bdc3c7;
 .usersList h2{
 font-size: 2.5rem;
 font-weight: 300;
-
+position: relative;
 }
 .formBtn{
     padding: 2px;
@@ -282,4 +302,24 @@ margin-right: 2px;
 }
 #err1,#err2,#err3{
     display: inline-block;
+}
+.search{
+position: absolute;
+top: 10px;
+right: 0px;
+}
+.search label{
+    background-color: #222f3e;
+    padding: 7px;
+    color: #ffff;
+}
+.search input{
+    padding: 7px;
+    cursor: pointer;
+    outline: none;
+    border: 2px solid #bdc3c7;
+    border-radius: 4px;
+margin-left: -4px;
+border-bottom-left-radius: 0;
+border-top-left-radius: 0;
 }
